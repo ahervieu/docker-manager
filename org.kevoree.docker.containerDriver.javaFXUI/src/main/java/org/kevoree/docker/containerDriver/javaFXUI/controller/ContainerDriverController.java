@@ -9,6 +9,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.util.Callback;
+import org.kevoree.docker.containerDriver.core.ContainerDriverFactory;
 import org.kevoree.docker.containerDriver.core.StringParsingUtils;
 import org.kevoree.docker.containerDriver.core.cgroupDriver.BlkioDriver;
 import org.kevoree.docker.containerDriver.core.cgroupDriver.CPUDriver;
@@ -67,7 +68,7 @@ public class ContainerDriverController implements Initializable {
 
     private DockerClientImpl dci;
 
-    private StringParsingUtils.ContainerDriverFactory factory;
+    private ContainerDriverFactory factory;
 
     @FXML
     private void handleButtonApply() {
@@ -77,24 +78,20 @@ public class ContainerDriverController implements Initializable {
 
                 if(StringParsingUtils.isInteger( io_write.getText())) {
                     BlkioDriver.setWriteValue(currContainer.getId(), io_write.getText());
+                    currContainer.setIo_write_speed(Integer.valueOf(io_write.getText()));
                 }
                 if(StringParsingUtils.isInteger( io_read.getText())) {
                     BlkioDriver.setReadValue(currContainer.getId(), io_read.getText());
+                    currContainer.setIo_read_speed(Integer.valueOf(io_write.getText()));
                 }
                 CPUDriver.setCPUValue(currContainer.getId(), cpu_number.getText());
-
+                currContainer.setCpuNumber(cpu_number.getText());
                 if(StringParsingUtils.isInteger( freq.getText())) {
                     CPUDriver.setFreqValue(currContainer.getId(), freq.getText());
+                    currContainer.setCpu_freq(Integer.valueOf( freq.getText()));
                 }
-
-
-                    MemoryDriver.setMaxMemValue(currContainer.getId(), maxMem.getText());
-
-
-                    MemoryDriver.setSwapValue(currContainer.getId(), swap.getText());
-
-
-
+                MemoryDriver.setMaxMemValue(currContainer.getId(), maxMem.getText());
+                MemoryDriver.setSwapValue(currContainer.getId(), swap.getText());
                 //Setting value in the model
 
                 if (currContainer.getBridge().isEmpty()) {
@@ -216,17 +213,18 @@ public class ContainerDriverController implements Initializable {
         CustomContainerDetail currContainer = getCurrentContainer();
 
         if (currContainer != null) {
-            ContainerConfig currConf = currContainer.getContainer().getConfig();
 
-            io_read.setText(BlkioDriver.getReadValue(currContainer.getId()));
-            io_write.setText(BlkioDriver.getWriteValue(currContainer.getId()));
+            io_read.setText(String.valueOf(currContainer.getIo_read_speed()));
+            io_write.setText(String.valueOf(currContainer.getIo_write_speed()));
 
-            cpu_number.setText(CPUDriver.getCpuValue(currContainer.getId()));
-            freq.setText(CPUDriver.getFreqValue(currContainer.getId()));
+            cpu_number.setText(currContainer.getCpuNumber());
+            freq.setText(String.valueOf(currContainer.getCpu_freq()));
 
-            maxMem.setText(MemoryDriver.getMaxMemValue(currContainer.getId()));
-            swap.setText(MemoryDriver.getSwapValue(currContainer.getId()));
-            System.out.println(String.valueOf(currContainer.getIncomingTraffic()));
+
+            maxMem.setText(String.valueOf(currContainer.getMax_mem()));
+            swap.setText(String.valueOf(currContainer.getMax_swap()));
+
+
             corrupt_rate.setText(String.valueOf(currContainer.getCorruptionRate()));
             delay.setText(String.valueOf(currContainer.getDelayRate()));
             loss_rate.setText(String.valueOf(currContainer.getLossRate()));
@@ -240,7 +238,7 @@ public class ContainerDriverController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         NetworkDriver.addIpTableRule() ;
-        factory = new StringParsingUtils.ContainerDriverFactory();
+        factory = new ContainerDriverFactory();
         if (!isRoot()) {
             System.err.println("Root access is necessary to perform operations");
         }
@@ -256,7 +254,7 @@ public class ContainerDriverController implements Initializable {
                         super.updateItem(t, bln);
 
                         if (t != null && !bln) {
-                            setText(t.nameProperty().getValue().replace("/", ""));
+                            setText(t.nameProperty().replace("/", ""));
                         } else {
                             setText(null);
                         }
