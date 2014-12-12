@@ -18,7 +18,7 @@ public class CustomContainerDetail {
     private String bridge = "" ;
 
     private String id ;
-    private String nameProp ;
+    private String name;
 
     private int incomingTraffic ;
     private int outgoingTraffic ;
@@ -36,13 +36,13 @@ public class CustomContainerDetail {
     private int io_read_speed ;
 
 
-    public String getNameProp() {
-        return nameProp;
+    public String getName() {
+        return name;
     }
 
-    public void setNameProp(String nameProp) {
-        this.nameProp = nameProp;
-    }
+ /*   public void setName(String name) {
+        this.name = name;
+    }*/
 
     public String getCpuNumber() {
         return cpuNumber;
@@ -93,16 +93,16 @@ public class CustomContainerDetail {
     }
 
     public String nameProperty() {
-        return nameProp;
+        return name;
     }
 
     public String getId(){
         return  id;
     }
 
-    public void  setId(String _id){
+   /* public void  setId(String _id){
           id =_id;
-    }
+    }*/
 
     @XmlTransient
     public ContainerDetail getContainer() {
@@ -164,7 +164,7 @@ public class CustomContainerDetail {
     public CustomContainerDetail(ContainerDetail container) {
         id = container.getId();
 
-        nameProp = container.getName();
+        name = container.getName();
 
         this.container = container ;
         incomingTraffic= -1;
@@ -177,7 +177,7 @@ public class CustomContainerDetail {
     public CustomContainerDetail() {
         id = "-1";
 
-        nameProp = "-1";
+        name = "-1";
 
         this.container = null ;
         incomingTraffic= -1;
