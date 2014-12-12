@@ -1,17 +1,23 @@
 package org.kevoree.docker.containerDriver.core.model;
 
-import javafx.beans.property.SimpleStringProperty;
+
+
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
+
 
 /**
  * Created by aymeric on 02/12/14.
  */
+@XmlRootElement
 public class CustomContainerDetail {
 
-
+    @XmlTransient
     private ContainerDetail container ;
+
     private String bridge = "" ;
 
-    private String idProperty ;
+    private String id ;
     private String nameProp ;
 
     private int incomingTraffic ;
@@ -29,13 +35,6 @@ public class CustomContainerDetail {
     private int io_write_speed ;
     private int io_read_speed ;
 
-    public String getIdProperty() {
-        return idProperty;
-    }
-
-    public void setIdProperty(String idProperty) {
-        this.idProperty = idProperty;
-    }
 
     public String getNameProp() {
         return nameProp;
@@ -93,46 +92,19 @@ public class CustomContainerDetail {
         this.io_read_speed = io_read_speed;
     }
 
-
-
-    public CustomContainerDetail(ContainerDetail container) {
-        idProperty = container.getId();
-
-        nameProp = container.getName();
-
-        this.container = container ;
-        incomingTraffic= -1;
-        outgoingTraffic =-1;
-        lossRate = -1;
-        delayRate = -1 ;
-
-    }
-
     public String nameProperty() {
         return nameProp;
     }
 
-    @Override
-    public boolean equals( Object obj) {
-        if (obj == null) return false;
-        if (getClass() != obj.getClass()) return false;
-        final CustomContainerDetail other = (CustomContainerDetail) obj;
-        return (other.getContainer().getId().equals(this.getContainer().getId()));
-    }
-
-
     public String getId(){
-        return  idProperty;
+        return  id;
     }
 
     public void  setId(String _id){
-          idProperty =_id;
+          id =_id;
     }
 
-    public String idPropertyProperty() {
-        return idProperty;
-    }
-
+    @XmlTransient
     public ContainerDetail getContainer() {
         return container;
     }
@@ -189,5 +161,38 @@ public class CustomContainerDetail {
         this.delayRate = delayRate;
     }
 
+    public CustomContainerDetail(ContainerDetail container) {
+        id = container.getId();
+
+        nameProp = container.getName();
+
+        this.container = container ;
+        incomingTraffic= -1;
+        outgoingTraffic =-1;
+        lossRate = -1;
+        delayRate = -1 ;
+
+    }
+
+    public CustomContainerDetail() {
+        id = "-1";
+
+        nameProp = "-1";
+
+        this.container = null ;
+        incomingTraffic= -1;
+        outgoingTraffic =-1;
+        lossRate = -1;
+        delayRate = -1 ;
+
+    }
+
+    @Override
+    public boolean equals( Object obj) {
+        if (obj == null) return false;
+        if (getClass() != obj.getClass()) return false;
+        final CustomContainerDetail other = (CustomContainerDetail) obj;
+        return (other.getContainer().getId().equals(this.getContainer().getId()));
+    }
 
 }
