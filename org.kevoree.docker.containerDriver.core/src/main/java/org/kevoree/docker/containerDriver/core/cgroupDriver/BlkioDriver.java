@@ -38,8 +38,10 @@ public class BlkioDriver {
     }
 
     public static void setWriteValue(String containerId, String value) {
+        System.out.println("clic5");
         if(StringParsingUtils.isInteger(value)){
            value = "8:0 " + value ;
+            System.out.println("clic6");
             GenericDriver.SetValue(containerId,CgroupStructure.blkio_subsystem,CgroupStructure.blkio_write,value) ;
         }
     }

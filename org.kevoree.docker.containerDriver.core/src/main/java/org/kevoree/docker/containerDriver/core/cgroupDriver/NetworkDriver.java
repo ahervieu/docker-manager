@@ -38,12 +38,12 @@ public class NetworkDriver {
     }
 
 
-    public static void setIncomingTraffic(String bridge,  String traffic)
+    public static void setIncomingTraffic(String bridge,  int traffic)
     {
         if(!bridge.isEmpty())
         {
             execCmd(" sudo tc qdisc del dev "+bridge+" root netem rate " + traffic +"kbit") ;
-            if(!traffic.equals("-1")) {
+            if(traffic != -1) {
             execCmd(" sudo tc qdisc add dev "+bridge+" root netem rate " + traffic +"kbit") ;
             }
         }
@@ -83,12 +83,12 @@ public class NetworkDriver {
         }
     }
 
-    public static void setOutgoingTraffic( String containerId,  String traffic)
+    public static void setOutgoingTraffic( String containerId,  int traffic)
     {
         if(!containerId.isEmpty())
         {
             execCmd(" sudo docker exec "+containerId+" tc qdisc del dev eth0 root netem rate " + traffic +"kbit");
-            if(!traffic.equals("-1")) {
+            if(traffic != -1)  {
             execCmd(" sudo docker exec "+containerId+" tc qdisc all dev eth0 root netem rate " + traffic +"kbit") ;
         }
         }

@@ -2,6 +2,12 @@ package org.kevoree.docker.containerDriver.core.model;
 
 
 
+import org.kevoree.docker.containerDriver.core.StringParsingUtils;
+import org.kevoree.docker.containerDriver.core.cgroupDriver.BlkioDriver;
+import org.kevoree.docker.containerDriver.core.cgroupDriver.CPUDriver;
+import org.kevoree.docker.containerDriver.core.cgroupDriver.MemoryDriver;
+import org.kevoree.docker.containerDriver.core.cgroupDriver.NetworkDriver;
+
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 
@@ -49,6 +55,7 @@ public class CustomContainerDetail {
     }
 
     public void setCpuNumber(String cpuNumber) {
+        CPUDriver.setCPUValue(this.getId(), cpuNumber);
         this.cpuNumber = cpuNumber;
     }
 
@@ -57,14 +64,19 @@ public class CustomContainerDetail {
     }
 
     public void setCpu_freq(int cpu_freq) {
+
+        CPUDriver.setFreqValue(this.getId(),String.valueOf(cpu_freq));
         this.cpu_freq = cpu_freq;
     }
 
     public String getMax_mem() {
+
         return max_mem;
     }
 
     public void setMax_mem(String max_mem) {
+
+        MemoryDriver.setMaxMemValue(this.getId(),max_mem );
         this.max_mem = max_mem;
     }
 
@@ -73,6 +85,7 @@ public class CustomContainerDetail {
     }
 
     public void setMax_swap(String max_swap) {
+        MemoryDriver.setSwapValue(this.getId(), max_swap);
         this.max_swap = max_swap;
     }
 
@@ -81,6 +94,8 @@ public class CustomContainerDetail {
     }
 
     public void setIo_write_speed(int io_write_speed) {
+        System.out.println("clic4");
+        BlkioDriver.setWriteValue(this.getId(), String.valueOf(io_write_speed));
         this.io_write_speed = io_write_speed;
     }
 
@@ -89,6 +104,7 @@ public class CustomContainerDetail {
     }
 
     public void setIo_read_speed(int io_read_speed) {
+        BlkioDriver.setReadValue(this.getId(), String.valueOf(io_read_speed));
         this.io_read_speed = io_read_speed;
     }
 
@@ -122,10 +138,13 @@ public class CustomContainerDetail {
     }
 
     public int getIncomingTraffic() {
+
         return incomingTraffic;
     }
 
     public void setIncomingTraffic(int incomingTraffic) {
+
+        NetworkDriver.setIncomingTraffic(this.getBridge(),incomingTraffic);
         this.incomingTraffic = incomingTraffic;
     }
 
@@ -134,6 +153,8 @@ public class CustomContainerDetail {
     }
 
     public void setOutgoingTraffic(int outgoingTraffic) {
+
+        NetworkDriver.setOutgoingTraffic(this.getBridge(), outgoingTraffic);
         this.outgoingTraffic = outgoingTraffic;
     }
 
@@ -142,6 +163,7 @@ public class CustomContainerDetail {
     }
 
     public void setCorruptionRate(int corruptionRate) {
+        NetworkDriver.setIncomingCorruptionRate(this.getBridge(), corruptionRate);
         this.corruptionRate = corruptionRate;
     }
 
@@ -150,6 +172,7 @@ public class CustomContainerDetail {
     }
 
     public void setLossRate(int lossRate) {
+        NetworkDriver.setIncomingLossRate(this.getBridge(), lossRate);
         this.lossRate = lossRate;
     }
 
@@ -158,6 +181,7 @@ public class CustomContainerDetail {
     }
 
     public void setDelayRate(int delayRate) {
+        NetworkDriver.setIncomingDelay(this.getBridge(),delayRate);
         this.delayRate = delayRate;
     }
 
@@ -195,4 +219,43 @@ public class CustomContainerDetail {
         return (other.getContainer().getId().equals(this.getContainer().getId()));
     }
 
+    @Override
+    public String toString() {
+        return "CustomContainerDetail{" +
+                "container=" + container +
+                ", bridge='" + bridge + '\'' +
+                ", id='" + id + '\'' +
+                ", name='" + name + '\'' +
+                ", incomingTraffic=" + incomingTraffic +
+                ", outgoingTraffic=" + outgoingTraffic +
+                ", corruptionRate=" + corruptionRate +
+                ", lossRate=" + lossRate +
+                ", delayRate=" + delayRate +
+                ", cpuNumber='" + cpuNumber + '\'' +
+                ", cpu_freq=" + cpu_freq +
+                ", max_mem='" + max_mem + '\'' +
+                ", max_swap='" + max_swap + '\'' +
+                ", io_write_speed=" + io_write_speed +
+                ", io_read_speed=" + io_read_speed +
+                '}';
+    }
+
+
+    public void updateCustomContainerDetail(CustomContainerDetail ccd_){
+       this.setIncomingTraffic(ccd_.getIncomingTraffic());
+       this.setOutgoingTraffic(ccd_.getOutgoingTraffic());
+       this.setCorruptionRate(ccd_.getCorruptionRate());
+       this.setLossRate(ccd_.getLossRate());
+       this.setDelayRate(ccd_.getDelayRate());
+
+
+       this.setCpuNumber(ccd_.getCpuNumber());
+       this.setCpu_freq(ccd_.getCpu_freq());
+
+       this.setIo_write_speed(ccd_.getIo_write_speed());
+       this.setIo_read_speed(ccd_.getIo_read_speed());
+
+       this.setMax_mem(ccd_.getMax_mem());
+       this.setMax_swap(ccd_.getMax_swap());
+    }
 }
