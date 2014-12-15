@@ -73,18 +73,18 @@ public class ContainerDriverController implements Initializable {
     @FXML
     private void handleButtonApply() {
         if (true) {
-            System.out.println("clic");
+
             CustomContainerDetail currContainer = getCurrentContainer();
-            System.out.println("clic2");
+
             if (currContainer != null) {
 
                 if(StringParsingUtils.isInteger( io_write.getText())) {
-                    System.out.println("clic3");
+
                     currContainer.setIo_write_speed(Integer.valueOf(io_write.getText()));
                 }
                 if(StringParsingUtils.isInteger( io_read.getText())) {
 
-                    currContainer.setIo_read_speed(Integer.valueOf(io_write.getText()));
+                    currContainer.setIo_read_speed(Integer.valueOf(io_read.getText()));
                 }
 
                 currContainer.setCpuNumber(cpu_number.getText());

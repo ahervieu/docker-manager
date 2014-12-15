@@ -32,7 +32,7 @@ public class GenericDriver {
 
 
     public static void SetValue(String ContainerId, String Subsystem, String file,String Value){
-        System.out.println("clic7");
+
         System.out.println("Setting value : " + ContainerId + " /" + Subsystem + "/" +  file +" : " + Value) ;
         String fileUri = CgroupStructure.cGroupURI + "/" + Subsystem + "/docker/" + ContainerId + "/" + file;
         DataOutputStream os = null;

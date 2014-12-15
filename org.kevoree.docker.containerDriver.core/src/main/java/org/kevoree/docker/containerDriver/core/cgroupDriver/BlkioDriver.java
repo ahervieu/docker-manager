@@ -32,17 +32,26 @@ public class BlkioDriver {
 
     public static void setReadValue(String containerId, String value) {
         if(StringParsingUtils.isInteger(value)){
-        value = "8:0 " + value ;
-        GenericDriver.SetValue(containerId,CgroupStructure.blkio_subsystem,CgroupStructure.blkio_read,value) ;
+
+            if(value.equals("-1")){
+                GenericDriver.SetValue(containerId,CgroupStructure.blkio_subsystem,CgroupStructure.blkio_read,"") ;
+            }else{
+                value = "8:0 " + value ;
+                GenericDriver.SetValue(containerId,CgroupStructure.blkio_subsystem,CgroupStructure.blkio_read,value) ;
+            }
+
         }
     }
 
     public static void setWriteValue(String containerId, String value) {
-        System.out.println("clic5");
         if(StringParsingUtils.isInteger(value)){
-           value = "8:0 " + value ;
-            System.out.println("clic6");
-            GenericDriver.SetValue(containerId,CgroupStructure.blkio_subsystem,CgroupStructure.blkio_write,value) ;
+            if(value.equals("-1")){
+                GenericDriver.SetValue(containerId,CgroupStructure.blkio_subsystem,CgroupStructure.blkio_write,"") ;
+            }else{
+                value = "8:0 " + value ;
+                GenericDriver.SetValue(containerId,CgroupStructure.blkio_subsystem,CgroupStructure.blkio_write,value) ;
+            }
+
         }
     }
 

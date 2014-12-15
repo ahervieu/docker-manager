@@ -5,7 +5,7 @@
 
     <groupId>org.kevoree</groupId>
     <artifactId>docker-container-javafxui</artifactId>
-    <name>org.kevoree.docker.containerDriver.javaFXUI</name>
+
 
     <packaging>jar</packaging>
     <version>1.0-SNAPSHOT</version>

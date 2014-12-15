@@ -94,7 +94,6 @@ public class CustomContainerDetail {
     }
 
     public void setIo_write_speed(int io_write_speed) {
-        System.out.println("clic4");
         BlkioDriver.setWriteValue(this.getId(), String.valueOf(io_write_speed));
         this.io_write_speed = io_write_speed;
     }
