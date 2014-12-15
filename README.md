@@ -27,4 +27,20 @@ stress--vm 2 --vm-bytes 250M
 ```
 Docker container will try to consume 2*250Mo of memory. You can  observe the limitation at 250 in the resource monitor. Then put -1 and ovserve that the container then consumes 500 Mo.
 
+## Testing Network :
+In the container :
+```
+ time(wget http://www.obeo.fr/download/release/designer/6.2/latest/juno3/bundles/ObeoDesigner-6.2-linux.gtk.x86_64.zip)
+```
+
+Then add traffic limitation and observe variations.
+
+## Testing IO :
+In the container :
+```
+ time $(dd if=/dev/zero of=testfile0 bs=1000 count=100000 && sync)
+ ```
+ 
+ 
+ 
 
