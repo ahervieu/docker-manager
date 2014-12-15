@@ -3,10 +3,8 @@ package org.kevoree.docker.containerDriver.rest;
 import org.kevoree.docker.containerDriver.core.model.CustomContainerDetail;
 
 import javax.ws.rs.*;
-import javax.ws.rs.core.Context;
-import javax.ws.rs.core.MediaType;
-import javax.ws.rs.core.Request;
-import javax.ws.rs.core.UriInfo;
+import javax.ws.rs.core.*;
+import javax.xml.bind.JAXBElement;
 
 /**
  * Created by aymeric on 12/12/14.
@@ -45,11 +43,26 @@ public class CustomContainerResource {
         return ccd;
     }
     @PUT
-    @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
-    @Consumes({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
-    public void updateContainer(){
-        System.out.println(uriInfo.getAbsolutePath().toString());
-        System.out.println(request.getMethod());
+    @Consumes(MediaType.APPLICATION_XML)
+    public Response putCustomContainer(JAXBElement<CustomContainerDetail> customContainerDetail) {
+        CustomContainerDetail c = customContainerDetail.getValue();
+        return putAndGetResponse(c);
+    }
+    //We only handle update / not creation
+    private Response putAndGetResponse(CustomContainerDetail c) {
+        Response res = null;
+        if(CustomContainerDAO.instance.getModel().containsKey(c.getId())) {
+            res = Response.noContent().build();
+            CustomContainerDetail c2 =  CustomContainerDAO.instance.getModel().get(c.getId()) ;
+            c2.updateCustomContainerDetail(c);
+        } else {
+     ///       res = Response.created(uriInfo.getAbsolutePath()).build();
+        }
+
+        //Updating existing container
+
+
+        return res;
     }
 
 
