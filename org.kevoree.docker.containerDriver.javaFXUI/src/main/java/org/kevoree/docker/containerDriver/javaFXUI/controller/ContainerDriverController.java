@@ -73,25 +73,27 @@ public class ContainerDriverController implements Initializable {
     @FXML
     private void handleButtonApply() {
         if (true) {
+            System.out.println("clic");
             CustomContainerDetail currContainer = getCurrentContainer();
+            System.out.println("clic2");
             if (currContainer != null) {
 
                 if(StringParsingUtils.isInteger( io_write.getText())) {
-                    BlkioDriver.setWriteValue(currContainer.getId(), io_write.getText());
+                    System.out.println("clic3");
                     currContainer.setIo_write_speed(Integer.valueOf(io_write.getText()));
                 }
                 if(StringParsingUtils.isInteger( io_read.getText())) {
-                    BlkioDriver.setReadValue(currContainer.getId(), io_read.getText());
+
                     currContainer.setIo_read_speed(Integer.valueOf(io_write.getText()));
                 }
-                CPUDriver.setCPUValue(currContainer.getId(), cpu_number.getText());
+
                 currContainer.setCpuNumber(cpu_number.getText());
                 if(StringParsingUtils.isInteger( freq.getText())) {
-                    CPUDriver.setFreqValue(currContainer.getId(), freq.getText());
                     currContainer.setCpu_freq(Integer.valueOf( freq.getText()));
                 }
-                MemoryDriver.setMaxMemValue(currContainer.getId(), maxMem.getText());
-                MemoryDriver.setSwapValue(currContainer.getId(), swap.getText());
+                currContainer.setMax_mem(maxMem.getText());
+                currContainer.setMax_swap( swap.getText());
+
                 //Setting value in the model
 
                 if (currContainer.getBridge().isEmpty()) {
@@ -99,26 +101,26 @@ public class ContainerDriverController implements Initializable {
                 } else {
 
                     if(StringParsingUtils.isInteger( corrupt_rate.getText())) {
-                        NetworkDriver.setIncomingCorruptionRate(currContainer.getBridge(), Integer.valueOf(corrupt_rate.getText()));
+
                         currContainer.setCorruptionRate(Integer.valueOf(corrupt_rate.getText()));
                     }
                     if(StringParsingUtils.isInteger( delay.getText())) {
-                        NetworkDriver.setIncomingDelay(currContainer.getBridge(), Integer.valueOf(delay.getText()));
+
                         currContainer.setDelayRate( Integer.valueOf(delay.getText()));
                     }
 
                     if(StringParsingUtils.isInteger( loss_rate.getText())) {
-                        NetworkDriver.setIncomingLossRate(currContainer.getBridge(), Integer.valueOf(loss_rate.getText()));
+
                         currContainer.setLossRate(Integer.valueOf(loss_rate.getText()));
                     }
 
                     if(StringParsingUtils.isInteger( incoming_traffic.getText())) {
-                        NetworkDriver.setIncomingTraffic(currContainer.getBridge(), incoming_traffic.getText());
+
                         currContainer.setIncomingTraffic(Integer.valueOf(incoming_traffic.getText()));
                     }
 
                     if(StringParsingUtils.isInteger( outgoing_traffic.getText())) {
-                        NetworkDriver.setOutgoingTraffic(currContainer.getBridge(), outgoing_traffic.getText());
+
                         currContainer.setOutgoingTraffic(Integer.valueOf(outgoing_traffic.getText()));
                     }
 
