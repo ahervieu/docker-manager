@@ -5,16 +5,8 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>org.kevoree</groupId>
-    <artifactId>docker-container-driver</artifactId>
+    <artifactId>docker-container-driver-core</artifactId>
     <version>1.0-SNAPSHOT</version>
-
-
-
-    <organization>
-        <!-- Used as the 'Vendor' for JNLP generation -->
-        <name>kevoree</name>
-    </organization>
-
 
 <build>
 

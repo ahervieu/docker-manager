@@ -7,13 +7,9 @@
     <artifactId>docker-container-javafxui</artifactId>
 
 
-    <packaging>jar</packaging>
+
     <version>1.0-SNAPSHOT</version>
     
-    <organization>
-        <!-- Used as the 'Vendor' for JNLP generation -->
-        <name>kevoree</name>
-    </organization>
 
     <properties>
         <slf4j.version>1.6.1</slf4j.version>
@@ -22,18 +18,16 @@
     <build>
 
         <finalName>org.kevoree.docker.containerDriver.javaFXUI</finalName>
-
         <plugins>
-                <plugin>
-                    <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-compiler-plugin</artifactId>
-                    <configuration>
-                        <source>1.8</source>
-                        <target>1.8</target>
-                    </configuration>
-                    <version>3.2</version>
-                </plugin>
-
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <source>1.8</source>
+                    <target>1.8</target>
+                </configuration>
+                <version>3.2</version>
+            </plugin>
 
 
             <plugin>
@@ -46,7 +40,6 @@
                     <!-- only required if signing the jar file -->
                 </configuration>
             </plugin>
-
         </plugins>
     </build>
 
@@ -64,7 +57,7 @@
         </dependency>
         <dependency>
             <groupId>org.kevoree</groupId>
-            <artifactId>docker-container-driver</artifactId>
+            <artifactId>docker-container-driver-core</artifactId>
             <version>1.0-SNAPSHOT</version>
         </dependency>
     </dependencies>
