@@ -133,7 +133,7 @@ public class DockerClientImpl implements DockerClient {
         try {
 
             JSONResource res = this.resty.json(this.url + String.format(DockerApi.INSPECT_CONTAINER, idOrName));
-
+            System.out.println(res.toObject().toString());
             ObjectMapper mapper = build();
             return mapper.readValue(res.toObject().toString(), ContainerDetail.class);
 

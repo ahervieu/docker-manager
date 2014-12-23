@@ -24,7 +24,7 @@ public class HostConfig {
     @JsonProperty("Links")           private Object        links;
     @JsonProperty("LxcConf")         private Object        lxcConf;
     @JsonProperty("NetworkMode")     private Object        networkMode;
-    @JsonProperty("PortBindings")    private Map<String,String[]> portBinding;
+    @JsonProperty("PortBindings")    private Map<String,PortBindings[]> portBinding;
     @JsonProperty("Privileged")      private boolean       privileged;
     @JsonProperty("RestartPolicy")   private RestartPolicy restartPolicy;
     @JsonProperty("SecurityOpt")     private Object        securityOpt;
@@ -152,11 +152,11 @@ public class HostConfig {
         this.securityOpt = securityOpt;
     }
 
-    public Map<String, String[]> getPortBinding() {
+    public Map<String, PortBindings[]> getPortBinding() {
         return portBinding;
     }
 
-    public void setPortBinding(Map<String, String[]> portBinding) {
+    public void setPortBinding(Map<String, PortBindings[]> portBinding) {
         this.portBinding = portBinding;
     }
 

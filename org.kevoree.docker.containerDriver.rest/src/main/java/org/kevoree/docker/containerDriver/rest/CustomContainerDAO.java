@@ -25,6 +25,7 @@ public enum CustomContainerDAO {
     private Map<String, CustomContainerDetail> contentProvider = new HashMap<String, CustomContainerDetail>();
 
     private CustomContainerDAO() {
+
         factory = new ContainerDriverFactory();
         dci = new DockerClientImpl("http://127.0.0.1:2375");
         updateContainerMap();
