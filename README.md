@@ -2,7 +2,15 @@ docker-manager
 ==============
 # getting started
 * activate rest server on docker
-* mvn jfx:jar ; sudo java -jar target/jfx/app/org.kevoree.docker.containerdriver-jfx.jar
+* to build the jfx app in JavaFx project :
+```
+mvn jfx:jar ; sudo java -jar target/jfx/app/org.kevoree.docker.containerdriver-jfx.jar
+```
+* to build the rest server, in the rest project 
+```
+mvn clean compile assembly:single
+```
+
 * start a container :
 ```
  sudo docker run --cap-add=NET_ADMIN -ti --cpuset=0 ahervieu/stress_diverse
