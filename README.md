@@ -6,9 +6,9 @@ docker-manager
 ```
 mvn jfx:jar ; sudo java -jar target/jfx/app/org.kevoree.docker.containerdriver-jfx.jar
 ```
-* to build the rest server, in the rest project 
+* to start the rest server, in the rest project
 ```
-mvn clean compile assembly:single
+mvn exec:java
 ```
 
 * start a container :
