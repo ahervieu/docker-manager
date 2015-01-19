@@ -1,4 +1,4 @@
-package org.kevoree.docker.containerDriver.rest;
+package org.kevoree.docker.containerDriver.rest.dao;
 
 import org.kevoree.docker.containerDriver.core.ContainerDriverFactory;
 import org.kevoree.docker.containerDriver.core.client.DockerClientImpl;

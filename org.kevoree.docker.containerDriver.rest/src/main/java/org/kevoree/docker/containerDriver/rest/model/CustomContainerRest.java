@@ -1,4 +1,4 @@
-package org.kevoree.docker.containerDriver.rest;
+package org.kevoree.docker.containerDriver.rest.model;
 
 import org.kevoree.docker.containerDriver.core.model.CustomContainerDetail;
 

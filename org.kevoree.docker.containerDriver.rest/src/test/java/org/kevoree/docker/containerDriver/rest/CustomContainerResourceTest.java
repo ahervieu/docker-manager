@@ -6,7 +6,7 @@ import org.glassfish.grizzly.http.server.HttpServer;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
-
+import org.kevoree.docker.containerDriver.rest.model.CustomContainerRest;
 
 
 import javax.ws.rs.client.Client;

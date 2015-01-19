@@ -1,6 +1,8 @@
-package org.kevoree.docker.containerDriver.rest;
+package org.kevoree.docker.containerDriver.rest.resource;
 
 import org.kevoree.docker.containerDriver.core.model.CustomContainerDetail;
+import org.kevoree.docker.containerDriver.rest.dao.CustomContainerDAO;
+import org.kevoree.docker.containerDriver.rest.model.CustomContainerRest;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.*;

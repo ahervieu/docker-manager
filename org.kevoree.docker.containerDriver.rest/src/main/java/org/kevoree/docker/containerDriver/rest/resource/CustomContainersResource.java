@@ -1,8 +1,10 @@
-package org.kevoree.docker.containerDriver.rest;
+package org.kevoree.docker.containerDriver.rest.resource;
 
 
 
 import org.kevoree.docker.containerDriver.core.model.CustomContainerDetail;
+import org.kevoree.docker.containerDriver.rest.dao.CustomContainerDAO;
+import org.kevoree.docker.containerDriver.rest.model.CustomContainerRest;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.*;
@@ -14,7 +16,7 @@ import java.util.List;
  * Created by aymeric on 12/12/14.
  */
 
-@Path("/Containers")
+@Path("/api")
 public class CustomContainersResource {
 
     @Context
@@ -25,6 +27,7 @@ public class CustomContainersResource {
     // Return the list of customContainerDetails for applications
 
     @GET
+    @Path("/containers")
     @Produces(MediaType.APPLICATION_JSON)
     public List<CustomContainerRest> getCustomContainerDetails() {
 
@@ -41,8 +44,8 @@ public class CustomContainersResource {
         return customContainerDetails;
     }
 
-    @Path("{CustomContainerRest}")
-    public CustomContainerResource getTodo(@PathParam("CustomContainerRest") String id) {
+    @Path("/{id}")
+    public CustomContainerResource getTodo(@PathParam("id") String id) {
         return new CustomContainerResource(uriInfo, request, id);
     }
 
