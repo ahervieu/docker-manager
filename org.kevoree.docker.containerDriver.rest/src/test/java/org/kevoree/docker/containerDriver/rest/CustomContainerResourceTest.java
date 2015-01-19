@@ -1,22 +1,22 @@
 package org.kevoree.docker.containerDriver.rest;
 
+
 import org.glassfish.grizzly.http.server.HttpServer;
+
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
-import org.kevoree.docker.containerDriver.core.model.CustomContainerDetail;
+
+
 
 import javax.ws.rs.client.Client;
 import javax.ws.rs.client.ClientBuilder;
+import javax.ws.rs.client.Entity;
 import javax.ws.rs.client.WebTarget;
-import javax.xml.bind.JAXBContext;
+import javax.ws.rs.core.MediaType;
 import javax.xml.bind.JAXBException;
-import javax.xml.bind.Unmarshaller;
 
-import java.io.StringReader;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
 
 public class CustomContainerResourceTest {
 
@@ -49,14 +49,25 @@ public class CustomContainerResourceTest {
      */
     @Test
     public void testGetIt() throws JAXBException {
- /*       String responseMsg = target.path("Containers/855d72d8cfbe0309b6cb45ef1fe0fa41c9670ff1a5036201690711428717f565").request().get(String.class);
+//more details here :https://github.com/jersey/jersey/blob/2.15/examples/json-moxy/src/test/java/org/glassfish/jersey/examples/jsonmoxy/JsonResourceTest.java
+        Client c = ClientBuilder.newClient();
+        target = c.target(Main.BASE_URI);
+        String responseMsg = target.path("Containers/").path("75f1a89f5b72321a0b2c827dd2b4a691802752d3d3c778c118fde72e558b5b7b").request().get(String.class);
         System.out.println(responseMsg);
-        JAXBContext jaxbContext = JAXBContext.newInstance(CustomContainerDetail.class);
-        Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
-        StringReader reader = new StringReader(responseMsg);
-        CustomContainerDetail ccr = (CustomContainerDetail) jaxbUnmarshaller.unmarshal(reader);
-        System.out.println(ccr.toString());
-  //      assertNotNull(responseMsg);*/
+
+
+        CustomContainerRest ccd =  target.path("Containers/").path("75f1a89f5b72321a0b2c827dd2b4a691802752d3d3c778c118fde72e558b5b7b").request().get(CustomContainerRest.class);
+        System.out.println("tostr");
+        System.out.println(ccd.toString());
+        System.out.println("setVal");
+        ccd.setCpu_freq(20);
+        System.out.println("setVal");
+        //Upadte Value
+  target.path("Containers/").path("75f1a89f5b72321a0b2c827dd2b4a691802752d3d3c778c118fde72e558b5b7b").
+                request(MediaType.APPLICATION_JSON_TYPE).
+                put(Entity.entity(ccd, MediaType.APPLICATION_JSON_TYPE),CustomContainerRest.class);
+
+
         assert(true);
     }
 }

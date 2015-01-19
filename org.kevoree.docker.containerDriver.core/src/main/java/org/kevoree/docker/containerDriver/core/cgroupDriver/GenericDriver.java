@@ -52,7 +52,8 @@ public class GenericDriver {
                 System.out.println(line);
             }
         } catch (IOException e) {
-            e.printStackTrace();
+            System.err.println("Exception : " + e.getMessage() + " please run the application with sudo");
+           // e.printStackTrace();
         }
     }
 }

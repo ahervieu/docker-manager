@@ -9,6 +9,7 @@ import javax.xml.bind.JAXBElement;
 /**
  * Created by aymeric on 12/12/14.
  */
+
 public class CustomContainerResource {
 
     @Context
@@ -26,44 +27,51 @@ public class CustomContainerResource {
 
     //Application integration
     @GET
-    @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
-    public CustomContainerDetail getCustomContainerDetail(){
+    @Produces(MediaType.APPLICATION_JSON)
+    public CustomContainerRest getCustomContainerDetail(){
         CustomContainerDetail ccd = CustomContainerDAO.instance.getModel().get(id);
         if(ccd == null)
             throw new RuntimeException("Get: CustomContainerDetail with " + id +  " not found");
-        return ccd;
+        return new CustomContainerRest(ccd);
     }
 
-    @GET
-    @Produces(MediaType.TEXT_XML)
-    public CustomContainerDetail getCustomContainerDetailHTML(){
-        CustomContainerDetail ccd = CustomContainerDAO.instance.getModel().get(id);
-        if(ccd == null)
-            throw new RuntimeException("Get: CustomContainerDetail with " + id +  " not found");
-        return ccd;
-    }
+
     @PUT
-    @Consumes(MediaType.APPLICATION_XML)
-    public Response putCustomContainer(JAXBElement<CustomContainerDetail> customContainerDetail) {
-        CustomContainerDetail c = customContainerDetail.getValue();
+    @Consumes(MediaType.APPLICATION_JSON)
+    public Response putCustomContainer(JAXBElement<CustomContainerRest> customContainerDetail) {
+        CustomContainerRest c = customContainerDetail.getValue();
         return putAndGetResponse(c);
     }
     //We only handle update / not creation
-    private Response putAndGetResponse(CustomContainerDetail c) {
+    private Response putAndGetResponse(CustomContainerRest c) {
+
+        System.out.println("Put");
+        System.out.println(c.toString());
         Response res = null;
+
         if(CustomContainerDAO.instance.getModel().containsKey(c.getId())) {
             res = Response.noContent().build();
             CustomContainerDetail c2 =  CustomContainerDAO.instance.getModel().get(c.getId()) ;
-            c2.updateCustomContainerDetail(c);
+           updateCustomContainerDetail(c, c2);
+
         } else {
-     ///       res = Response.created(uriInfo.getAbsolutePath()).build();
+            // do nothing, we only adapt existing containers
         }
-
-        //Updating existing container
-
 
         return res;
     }
 
-
+    private void updateCustomContainerDetail(CustomContainerRest ccr, CustomContainerDetail ccd){
+        ccd.setIncomingTraffic(ccr.getIncomingTraffic());
+        ccd.setOutgoingTraffic(ccr.getOutgoingTraffic());
+        ccd.setCorruptionRate(ccr.getCorruptionRate());
+        ccd.setLossRate(ccr.getLossRate());
+        ccd.setDelayRate(ccr.getDelayRate());
+        ccd.setCpuNumber(ccr.getCpuNumber());
+        ccd.setCpu_freq(ccr.getCpu_freq());
+        ccd.setMax_mem(ccr.getMax_mem());
+        ccd.setMax_swap(ccr.getMax_swap());
+        ccd.setIo_write_speed(ccr.getIo_write_speed());
+        ccd.setIo_read_speed(ccr.getIo_read_speed());
+   }
 }

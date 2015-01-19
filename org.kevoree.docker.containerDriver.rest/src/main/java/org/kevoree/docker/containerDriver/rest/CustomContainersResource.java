@@ -1,10 +1,13 @@
 package org.kevoree.docker.containerDriver.rest;
 
+
+
 import org.kevoree.docker.containerDriver.core.model.CustomContainerDetail;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.*;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 /**
@@ -19,27 +22,27 @@ public class CustomContainersResource {
     @Context
     Request request;
 
-
-    @GET
-    @Produces(MediaType.TEXT_XML)
-    public List<CustomContainerDetail> getCustomContainerDetailsBrowser() {
-        List<CustomContainerDetail> customContainerDetails = new ArrayList<CustomContainerDetail>();
-        customContainerDetails.addAll(CustomContainerDAO.instance.getModel().values());
-        return customContainerDetails;
-    }
-
-
     // Return the list of customContainerDetails for applications
+
     @GET
-    @Produces({ MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON })
-    public List<CustomContainerDetail> getCustomContainerDetails() {
-        List<CustomContainerDetail> customContainerDetails = new ArrayList<CustomContainerDetail>();
-        customContainerDetails.addAll(CustomContainerDAO.instance.getModel().values());
+    @Produces(MediaType.APPLICATION_JSON)
+    public List<CustomContainerRest> getCustomContainerDetails() {
+
+        List<CustomContainerRest> customContainerDetails = new ArrayList<CustomContainerRest>();
+
+        Collection<CustomContainerDetail> Lccd = CustomContainerDAO.instance.getModel().values() ;
+        for (CustomContainerDetail customContainerDetail : Lccd) {
+            CustomContainerRest   ccr = new CustomContainerRest(customContainerDetail);
+            customContainerDetails.add(ccr);
+
+
+            }
+
         return customContainerDetails;
     }
 
-    @Path("{customContainerDetail}")
-    public CustomContainerResource getTodo(@PathParam("customContainerDetail") String id) {
+    @Path("{CustomContainerRest}")
+    public CustomContainerResource getTodo(@PathParam("CustomContainerRest") String id) {
         return new CustomContainerResource(uriInfo, request, id);
     }
 

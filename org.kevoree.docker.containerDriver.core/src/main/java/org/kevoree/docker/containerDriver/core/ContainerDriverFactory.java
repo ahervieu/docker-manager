@@ -18,9 +18,6 @@ import org.kevoree.docker.containerDriver.core.model.CustomContainerDetail;
             CustomContainerDetail currCD = new CustomContainerDetail(c) ;
             populateCustomContainer(currCD);
             BridgeAcquisition ba = new BridgeAcquisition(currCD) ;
-
-
-
             Thread t = new Thread(ba);
             t.start();
             return currCD ;

@@ -15,10 +15,9 @@ import javax.xml.bind.annotation.XmlTransient;
 /**
  * Created by aymeric on 02/12/14.
  */
-@XmlRootElement
+
 public class CustomContainerDetail {
 
-    @XmlTransient
     private ContainerDetail container ;
 
     private String bridge = "" ;
@@ -44,6 +43,15 @@ public class CustomContainerDetail {
 
     public String getName() {
         return name;
+    }
+
+    public void setName(String _name) {
+         name = _name ;
+    }
+
+
+    public void setId(String _id) {
+        id = _id ;
     }
 
  /*   public void setName(String name) {
@@ -119,7 +127,6 @@ public class CustomContainerDetail {
           id =_id;
     }*/
 
-    @XmlTransient
     public ContainerDetail getContainer() {
         return container;
     }
@@ -239,7 +246,7 @@ public class CustomContainerDetail {
                 '}';
     }
 
-
+/*
     public void updateCustomContainerDetail(CustomContainerDetail ccd_){
        this.setIncomingTraffic(ccd_.getIncomingTraffic());
        this.setOutgoingTraffic(ccd_.getOutgoingTraffic());
@@ -256,5 +263,5 @@ public class CustomContainerDetail {
 
        this.setMax_mem(ccd_.getMax_mem());
        this.setMax_swap(ccd_.getMax_swap());
-    }
+    }*/
 }
