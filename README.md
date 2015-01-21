@@ -8,7 +8,7 @@ mvn jfx:jar ; sudo java -jar target/jfx/app/org.kevoree.docker.containerdriver-j
 ```
 * to start the rest server, in the rest project
 ```
-mvn exec:java
+sudo mvn exec:java
 ```
 
 * start a container :
@@ -17,6 +17,13 @@ mvn exec:java
 ```
 Use refresh button to update container list !
 
+
+##Playing with Rest API
+
+```
+http://localhost:8080/api/
+http://localhost:8080/api/ID of the container
+```
 
 # How to test it :
 ## Testing CPU :

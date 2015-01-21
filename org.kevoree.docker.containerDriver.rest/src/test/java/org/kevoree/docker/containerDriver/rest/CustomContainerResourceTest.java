@@ -52,18 +52,13 @@ public class CustomContainerResourceTest {
 //more details here :https://github.com/jersey/jersey/blob/2.15/examples/json-moxy/src/test/java/org/glassfish/jersey/examples/jsonmoxy/JsonResourceTest.java
         Client c = ClientBuilder.newClient();
         target = c.target(Main.BASE_URI);
-        String responseMsg = target.path("Containers/").path("75f1a89f5b72321a0b2c827dd2b4a691802752d3d3c778c118fde72e558b5b7b").request().get(String.class);
-        System.out.println(responseMsg);
 
 
-        CustomContainerRest ccd =  target.path("Containers/").path("75f1a89f5b72321a0b2c827dd2b4a691802752d3d3c778c118fde72e558b5b7b").request().get(CustomContainerRest.class);
-        System.out.println("tostr");
-        System.out.println(ccd.toString());
-        System.out.println("setVal");
-        ccd.setCpu_freq(20);
-        System.out.println("setVal");
+        CustomContainerRest ccd =  target.path("/api/e924c79baf74412bd8db37b5e060f56947d118a5cad95b534a1ed88e42793944/").request().get(CustomContainerRest.class);
+        ccd.setCpuNumber("0");
+        ccd.setCpu_freq(5);
         //Upadte Value
-  target.path("Containers/").path("75f1a89f5b72321a0b2c827dd2b4a691802752d3d3c778c118fde72e558b5b7b").
+  target.path("/api/e924c79baf74412bd8db37b5e060f56947d118a5cad95b534a1ed88e42793944/").
                 request(MediaType.APPLICATION_JSON_TYPE).
                 put(Entity.entity(ccd, MediaType.APPLICATION_JSON_TYPE),CustomContainerRest.class);
 
