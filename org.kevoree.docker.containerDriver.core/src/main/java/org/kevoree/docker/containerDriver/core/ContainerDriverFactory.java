@@ -1,12 +1,18 @@
 package org.kevoree.docker.containerDriver.core;
 
+import com.github.dockerjava.api.command.InspectContainerCmd;
+import com.github.dockerjava.api.command.InspectContainerResponse;
 import org.kevoree.docker.containerDriver.core.cgroupDriver.BlkioDriver;
 import org.kevoree.docker.containerDriver.core.cgroupDriver.CPUDriver;
 import org.kevoree.docker.containerDriver.core.cgroupDriver.MemoryDriver;
 import org.kevoree.docker.containerDriver.core.cgroupDriver.NetworkDriver;
+import org.kevoree.docker.containerDriver.core.client.DockerClientImpl;
 import org.kevoree.docker.containerDriver.core.model.CustomContainerDetail;
 
 import com.github.dockerjava.api.model.Container;
+
+import javax.print.Doc;
+
 /**
      * Created by aymeric on 05/12/14.
      */
@@ -28,7 +34,7 @@ import com.github.dockerjava.api.model.Container;
         private void populateCustomContainer(CustomContainerDetail cdc)
         {
 
-          //  ContainerConfig currConf = cdc.getContainer().getConfig();
+
             int freq_val = -1;
             int io_write_speed = -1 ;
             int io_read_speed = -1 ;
@@ -70,7 +76,8 @@ import com.github.dockerjava.api.model.Container;
 
             @Override
             public void run() {
-                ccd.setBridge(NetworkDriver.getContainerBridge(ccd.getContainer().().getIpAddress()));
+                InspectContainerResponse icr = DockerClientImpl.dockerClient.inspectContainerCmd(ccd.getId()).exec();
+                ccd.setBridge(NetworkDriver.getContainerBridge( icr.getNetworkSettings().getIpAddress()));
             }
         }
 

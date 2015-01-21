@@ -1,8 +1,5 @@
 package org.kevoree.docker.containerDriver.core;
 
-import org.kevoree.docker.containerDriver.core.cgroupDriver.NetworkDriver;
-import org.kevoree.docker.containerDriver.core.model.ContainerDetail;
-import org.kevoree.docker.containerDriver.core.model.CustomContainerDetail;
 
 /**
  * Created by aymeric on 10/12/14.
