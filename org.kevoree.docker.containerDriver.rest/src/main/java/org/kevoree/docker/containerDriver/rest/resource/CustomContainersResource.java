@@ -50,6 +50,13 @@ public class CustomContainersResource {
     }
 
 
+    @GET
+    @Path("/test")
+    @Produces(MediaType.APPLICATION_JSON)
+    public String sayHello() {
+        return "it works" ;
+    }
+
 
 
 }
