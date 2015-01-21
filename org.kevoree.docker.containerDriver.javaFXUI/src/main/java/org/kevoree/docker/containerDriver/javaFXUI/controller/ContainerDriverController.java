@@ -1,6 +1,7 @@
 package org.kevoree.docker.containerDriver.javaFXUI.controller;
 
 
+import com.github.dockerjava.api.model.Container;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
@@ -11,16 +12,9 @@ import javafx.scene.control.*;
 import javafx.util.Callback;
 import org.kevoree.docker.containerDriver.core.ContainerDriverFactory;
 import org.kevoree.docker.containerDriver.core.StringParsingUtils;
-import org.kevoree.docker.containerDriver.core.cgroupDriver.BlkioDriver;
-import org.kevoree.docker.containerDriver.core.cgroupDriver.CPUDriver;
-import org.kevoree.docker.containerDriver.core.cgroupDriver.MemoryDriver;
 import org.kevoree.docker.containerDriver.core.cgroupDriver.NetworkDriver;
 import org.kevoree.docker.containerDriver.core.client.DockerClientImpl;
-import org.kevoree.docker.containerDriver.core.client.DockerException;
-import org.kevoree.docker.containerDriver.core.model.Container;
-import org.kevoree.docker.containerDriver.core.model.ContainerConfig;
 import org.kevoree.docker.containerDriver.core.model.CustomContainerDetail;
-import us.monoid.json.JSONException;
 
 import java.io.File;
 import java.net.URL;
@@ -161,7 +155,7 @@ public class ContainerDriverController implements Initializable {
         CustomContainerDetail curr = dockerContainers.getSelectionModel().getSelectedItem();
         //Updating ContainerList
         // removing Container that are no more available
-        try {
+
             List<CustomContainerDetail> ccd_to_rm = new ArrayList<CustomContainerDetail>();
             List<CustomContainerDetail> ccd_to_add = new ArrayList<CustomContainerDetail>();
             List<Container> lstCon = dci.getContainers();
@@ -204,11 +198,6 @@ public class ContainerDriverController implements Initializable {
             }
 
 
-        } catch (DockerException e) {
-            e.printStackTrace();
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
     }
 
     private void refreshContainerView() {

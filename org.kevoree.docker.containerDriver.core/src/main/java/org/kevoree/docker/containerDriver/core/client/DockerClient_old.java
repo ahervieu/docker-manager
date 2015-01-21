@@ -10,7 +10,7 @@ import java.util.List;
  * Partial Docker API wrapper
  * Created by leiko on 22/05/14.
  */
-public interface DockerClient {
+public interface DockerClient_old {
 
     void start(String id) throws DockerException, JSONException;
     void start(String id, HostConfig conf) throws DockerException, JSONException;

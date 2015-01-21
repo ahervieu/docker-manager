@@ -30,5 +30,5 @@ WORKDIR docker-manager
 RUN mvn clean install
 WORKDIR org.kevoree.docker.containerDriver.rest
 
-EXPOSE 8081
+
 CMD ["mvn" ,"exec:java"]

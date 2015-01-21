@@ -4,17 +4,16 @@ import org.kevoree.docker.containerDriver.core.cgroupDriver.BlkioDriver;
 import org.kevoree.docker.containerDriver.core.cgroupDriver.CPUDriver;
 import org.kevoree.docker.containerDriver.core.cgroupDriver.MemoryDriver;
 import org.kevoree.docker.containerDriver.core.cgroupDriver.NetworkDriver;
-import org.kevoree.docker.containerDriver.core.model.ContainerConfig;
-import org.kevoree.docker.containerDriver.core.model.ContainerDetail;
 import org.kevoree.docker.containerDriver.core.model.CustomContainerDetail;
 
+import com.github.dockerjava.api.model.Container;
 /**
      * Created by aymeric on 05/12/14.
      */
     public  class ContainerDriverFactory {
 
 
-        public CustomContainerDetail createCustomContainerDetail(ContainerDetail c){
+        public CustomContainerDetail createCustomContainerDetail(Container c){
             CustomContainerDetail currCD = new CustomContainerDetail(c) ;
             populateCustomContainer(currCD);
             BridgeAcquisition ba = new BridgeAcquisition(currCD) ;
@@ -29,7 +28,7 @@ import org.kevoree.docker.containerDriver.core.model.CustomContainerDetail;
         private void populateCustomContainer(CustomContainerDetail cdc)
         {
 
-            ContainerConfig currConf = cdc.getContainer().getConfig();
+          //  ContainerConfig currConf = cdc.getContainer().getConfig();
             int freq_val = -1;
             int io_write_speed = -1 ;
             int io_read_speed = -1 ;
@@ -71,7 +70,7 @@ import org.kevoree.docker.containerDriver.core.model.CustomContainerDetail;
 
             @Override
             public void run() {
-                ccd.setBridge(NetworkDriver.getContainerBridge(ccd.getContainer().getNetworkSettings().getIpAddress()));
+                ccd.setBridge(NetworkDriver.getContainerBridge(ccd.getContainer().().getIpAddress()));
             }
         }
 
