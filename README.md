@@ -1,5 +1,6 @@
 docker-manager
 ==============
+A small video of presentation is available here :https://www.youtube.com/watch?v=uKcJt3-17GY&feature=youtu.be
 # getting started
 * activate rest server on docker
 * to build the jfx app in JavaFx project :
@@ -21,8 +22,8 @@ Use refresh button to update container list !
 ##Playing with Rest API
 
 ```
-http://localhost:8080/api/
-http://localhost:8080/api/ID of the container
+http://localhost:8081/api/
+http://localhost:8081/api/ID of the container
 ```
 
 # How to test it :
