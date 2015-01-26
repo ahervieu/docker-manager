@@ -48,7 +48,25 @@ public class CustomContainerDetail {
     public void setName(String _name) {
          name = _name ;
     }
-
+/*
+Ugly bug fix 
+TODO command pattern
+       cdc.setMax_swap(max_swap);
+            cdc.setCpu_freq(freq_val);
+            cdc.setMax_mem(max_mem);
+            cdc.setCpuNumber(cpu);
+            cdc.setIo_write_speed(io_write_speed);
+            cdc.setIo_read_speed(io_read_speed);
+ */
+     public void init(String max_swap, String max_mem, int freq_val,String  cpu, int io_write_speed, int io_read_speed){
+         this.max_swap = max_swap ;
+         this.max_mem = max_mem ;
+         this.cpu_freq = freq_val;
+         this.cpuNumber = cpu ;
+         this.io_read_speed = io_read_speed;
+         this.io_write_speed = io_write_speed;
+         
+     }
 
     public void setId(String _id) {
         id = _id ;
@@ -63,8 +81,10 @@ public class CustomContainerDetail {
     }
 
     public void setCpuNumber(String cpuNumber) {
-        CPUDriver.setCPUValue(this.getId(), cpuNumber);
-        this.cpuNumber = cpuNumber;
+        if(!this.cpuNumber.equals(cpuNumber)) {
+            CPUDriver.setCPUValue(this.getId(), cpuNumber);
+            this.cpuNumber = cpuNumber;
+        }
     }
 
     public int getCpu_freq() {
@@ -72,20 +92,21 @@ public class CustomContainerDetail {
     }
 
     public void setCpu_freq(int cpu_freq) {
-
-        CPUDriver.setFreqValue(this.getId(),String.valueOf(cpu_freq));
-        this.cpu_freq = cpu_freq;
+        if(this.cpu_freq != cpu_freq){
+            CPUDriver.setFreqValue(this.getId(),String.valueOf(cpu_freq));
+            this.cpu_freq = cpu_freq;
+        }
     }
 
     public String getMax_mem() {
-
         return max_mem;
     }
 
     public void setMax_mem(String max_mem) {
-
-        MemoryDriver.setMaxMemValue(this.getId(),max_mem );
-        this.max_mem = max_mem;
+        if(!this.max_mem.equals(max_mem)) {
+            MemoryDriver.setMaxMemValue(this.getId(), max_mem);
+            this.max_mem = max_mem;
+        }
     }
 
     public String getMax_swap() {
@@ -93,8 +114,10 @@ public class CustomContainerDetail {
     }
 
     public void setMax_swap(String max_swap) {
-        MemoryDriver.setSwapValue(this.getId(), max_swap);
-        this.max_swap = max_swap;
+        if(this.max_swap.equals(max_swap)) {
+            MemoryDriver.setSwapValue(this.getId(), max_swap);
+            this.max_swap = max_swap;
+        }
     }
 
     public int getIo_write_speed() {
@@ -102,8 +125,10 @@ public class CustomContainerDetail {
     }
 
     public void setIo_write_speed(int io_write_speed) {
-        BlkioDriver.setWriteValue(this.getId(), String.valueOf(io_write_speed));
-        this.io_write_speed = io_write_speed;
+        if(io_write_speed != this.io_write_speed) {
+            BlkioDriver.setWriteValue(this.getId(), String.valueOf(io_write_speed));
+            this.io_write_speed = io_write_speed;
+        }
     }
 
     public int getIo_read_speed() {
@@ -111,8 +136,10 @@ public class CustomContainerDetail {
     }
 
     public void setIo_read_speed(int io_read_speed) {
-        BlkioDriver.setReadValue(this.getId(), String.valueOf(io_read_speed));
-        this.io_read_speed = io_read_speed;
+        if(this.io_read_speed!=io_read_speed) {
+            BlkioDriver.setReadValue(this.getId(), String.valueOf(io_read_speed));
+            this.io_read_speed = io_read_speed;
+        }
     }
 
     public String nameProperty() {
@@ -149,9 +176,10 @@ public class CustomContainerDetail {
     }
 
     public void setIncomingTraffic(int incomingTraffic) {
-
-        NetworkDriver.setIncomingTraffic(this.getBridge(),incomingTraffic);
-        this.incomingTraffic = incomingTraffic;
+        if(this.incomingTraffic != incomingTraffic) {
+            NetworkDriver.setIncomingTraffic(this.getBridge(), incomingTraffic);
+            this.incomingTraffic = incomingTraffic;
+        }
     }
 
     public int getOutgoingTraffic() {
@@ -159,9 +187,10 @@ public class CustomContainerDetail {
     }
 
     public void setOutgoingTraffic(int outgoingTraffic) {
-
-        NetworkDriver.setOutgoingTraffic(this.getBridge(), outgoingTraffic);
-        this.outgoingTraffic = outgoingTraffic;
+        if(this.outgoingTraffic != outgoingTraffic) {
+            NetworkDriver.setOutgoingTraffic(this.getBridge(), outgoingTraffic);
+            this.outgoingTraffic = outgoingTraffic;
+        }
     }
 
     public int getCorruptionRate() {
@@ -169,8 +198,10 @@ public class CustomContainerDetail {
     }
 
     public void setCorruptionRate(int corruptionRate) {
-        NetworkDriver.setIncomingCorruptionRate(this.getBridge(), corruptionRate);
-        this.corruptionRate = corruptionRate;
+        if(this.corruptionRate != corruptionRate) {
+            NetworkDriver.setIncomingCorruptionRate(this.getBridge(), corruptionRate);
+            this.corruptionRate = corruptionRate;
+        }
     }
 
     public int getLossRate() {
@@ -178,8 +209,10 @@ public class CustomContainerDetail {
     }
 
     public void setLossRate(int lossRate) {
-        NetworkDriver.setIncomingLossRate(this.getBridge(), lossRate);
-        this.lossRate = lossRate;
+        if(this.lossRate != lossRate) {
+            NetworkDriver.setIncomingLossRate(this.getBridge(), lossRate);
+            this.lossRate = lossRate;
+        }
     }
 
     public int getDelayRate() {
@@ -187,8 +220,10 @@ public class CustomContainerDetail {
     }
 
     public void setDelayRate(int delayRate) {
-        NetworkDriver.setIncomingDelay(this.getBridge(),delayRate);
-        this.delayRate = delayRate;
+        if(this.delayRate != delayRate) {
+            NetworkDriver.setIncomingDelay(this.getBridge(), delayRate);
+            this.delayRate = delayRate;
+        }
     }
 
     public CustomContainerDetail(ContainerDetail container) {

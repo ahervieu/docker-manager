@@ -28,7 +28,6 @@ import org.kevoree.docker.containerDriver.core.model.CustomContainerDetail;
      */
         private void populateCustomContainer(CustomContainerDetail cdc)
         {
-
             ContainerConfig currConf = cdc.getContainer().getConfig();
             int freq_val = -1;
             int io_write_speed = -1 ;
@@ -48,12 +47,9 @@ import org.kevoree.docker.containerDriver.core.model.CustomContainerDetail;
             if(!BlkioDriver.getReadValue(cdc.getId()).equals("")){
                 io_read_speed = Integer.valueOf(BlkioDriver.getReadValue(cdc.getId()).trim()) ;
             }
-            cdc.setMax_swap(max_swap);
-            cdc.setCpu_freq(freq_val);
-            cdc.setMax_mem(max_mem);
-            cdc.setCpuNumber(cpu);
-            cdc.setIo_write_speed(io_write_speed);
-            cdc.setIo_read_speed(io_read_speed);
+
+           cdc. init(max_swap, max_mem,  freq_val,  cpu,  io_write_speed,  io_read_speed);
+
         }
 
 
