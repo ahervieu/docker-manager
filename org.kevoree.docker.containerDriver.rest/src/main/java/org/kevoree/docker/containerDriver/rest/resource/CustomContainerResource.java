@@ -46,11 +46,7 @@ public class CustomContainerResource {
     }
     //We only handle update / not creation
     private Response putAndGetResponse(CustomContainerRest c) {
-
-        System.out.println("Put");
-        System.out.println(c.toString());
         Response res = null;
-
         if(CustomContainerDAO.instance.getModel().containsKey(c.getId())) {
             res = Response.noContent().build();
             CustomContainerDetail c2 =  CustomContainerDAO.instance.getModel().get(c.getId()) ;
