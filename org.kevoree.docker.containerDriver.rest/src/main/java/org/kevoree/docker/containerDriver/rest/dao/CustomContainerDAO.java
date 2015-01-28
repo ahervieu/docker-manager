@@ -16,6 +16,7 @@ import java.util.Map;
  * Created by aymeric on 12/12/14.
  */
 public enum CustomContainerDAO {
+    
     instance ;
 
     private DockerClientImpl dci;
@@ -37,6 +38,7 @@ public enum CustomContainerDAO {
     }
 
     private void updateContainerMap(){
+  
         List<String> container_to_rm = new ArrayList<String>();
         List<String> container_to_add = new ArrayList<String>();
         try {
@@ -78,6 +80,7 @@ public enum CustomContainerDAO {
         try {
         // Resolving
         //Removing containers :
+            
         container_to_rm.forEach(s -> contentProvider.remove(s));
 
         for (String s : container_to_add) {

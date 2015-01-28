@@ -32,7 +32,6 @@ public class CustomContainersResource {
     public List<CustomContainerRest> getCustomContainerDetails() {
 
         List<CustomContainerRest> customContainerDetails = new ArrayList<CustomContainerRest>();
-
         Collection<CustomContainerDetail> Lccd = CustomContainerDAO.instance.getModel().values() ;
         for (CustomContainerDetail customContainerDetail : Lccd) {
             CustomContainerRest   ccr = new CustomContainerRest(customContainerDetail);
