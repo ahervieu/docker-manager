@@ -62,8 +62,9 @@ public class CustomContainerRest {
         cpu_freq = ccd.getCpu_freq();
         max_mem = ccd.getMax_mem();
         max_swap = ccd.getMax_swap();
-        io_read_speed = ccd.getIo_write_speed();
+        io_write_speed = ccd.getIo_write_speed();
         io_read_speed = ccd.getIo_read_speed();
+
     }
 
 
