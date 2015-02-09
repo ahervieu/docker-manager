@@ -29,7 +29,7 @@ public class Main {
         // create a resource config that scans for JAX-RS resources and providers
         // in com.example package
         final ResourceConfig rc = new ResourceConfig().packages("org.kevoree.docker.containerDriver.rest");
-
+        rc.register("JacksonFeature.class");
         return GrizzlyHttpServerFactory.createHttpServer(URI.create(BASE_URI), rc);
     }
 

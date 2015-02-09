@@ -29,6 +29,8 @@ RUN git clone https://github.com/ahervieu/docker-manager.git
 WORKDIR docker-manager
 RUN mvn clean install
 WORKDIR org.kevoree.docker.containerDriver.rest
-
-EXPOSE 8081
-CMD mvn exec:java
+RUN pwd
+RUN mvn clean compile assembly:single
+WORKDIR target
+EXPOSE 4848 8081 8181
+CMD jar -jar docker-container-rest-*.jar
