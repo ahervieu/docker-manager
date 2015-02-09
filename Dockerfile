@@ -32,5 +32,4 @@ WORKDIR org.kevoree.docker.containerDriver.rest
 RUN pwd
 RUN mvn clean compile assembly:single
 WORKDIR target
-EXPOSE 4848 8081 8181
-CMD jar -jar docker-container-rest-*.jar
+CMD java -jar docker-container-rest-*.jar
