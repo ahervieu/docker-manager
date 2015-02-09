@@ -14,10 +14,11 @@ import java.util.stream.Collectors;
  */
 public class  DockerClientImpl {
 
-    public static  DockerClient  dockerClient = DockerClientBuilder.getInstance("http://localhost:2375").build();
-
+    public static  DockerClient dockerClient ;
+    
     public  DockerClientImpl(String s) {
-        
+        dockerClient = DockerClientBuilder.getInstance(s).build();
+
     }
 
     public static List<Container> getContainers() {
