@@ -25,7 +25,7 @@ public enum CustomContainerDAO {
     private CustomContainerDAO() {
 
         factory = new ContainerDriverFactory();
-        dci = new DockerClientImpl("http://0.0.0.0:2375");
+        dci = new DockerClientImpl("http://127.0.0.1:2375");
         updateContainerMap();
     }
 
