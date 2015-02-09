@@ -33,7 +33,8 @@ import javax.print.Doc;
      */
         private void populateCustomContainer(CustomContainerDetail cdc)
         {
-            ContainerConfig currConf = cdc.getContainer().getConfig();
+
+            
             int freq_val = -1;
             int io_write_speed = -1 ;
             int io_read_speed = -1 ;
