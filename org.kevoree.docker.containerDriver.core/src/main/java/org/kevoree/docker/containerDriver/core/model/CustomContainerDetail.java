@@ -2,23 +2,19 @@ package org.kevoree.docker.containerDriver.core.model;
 
 
 
-import org.kevoree.docker.containerDriver.core.StringParsingUtils;
 import org.kevoree.docker.containerDriver.core.cgroupDriver.BlkioDriver;
 import org.kevoree.docker.containerDriver.core.cgroupDriver.CPUDriver;
 import org.kevoree.docker.containerDriver.core.cgroupDriver.MemoryDriver;
 import org.kevoree.docker.containerDriver.core.cgroupDriver.NetworkDriver;
 
-import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlTransient;
-
-
+import com.github.dockerjava.api.model.Container;
 /**
  * Created by aymeric on 02/12/14.
  */
 
 public class CustomContainerDetail {
 
-    private ContainerDetail container ;
+    private Container container ;
 
     private String bridge = "" ;
 
@@ -154,11 +150,11 @@ TODO command pattern
           id =_id;
     }*/
 
-    public ContainerDetail getContainer() {
+    public Container getContainer() {
         return container;
     }
 
-    public void setContainer(ContainerDetail container) {
+    public void setContainer(Container container) {
         this.container = container;
     }
 
@@ -226,10 +222,10 @@ TODO command pattern
         }
     }
 
-    public CustomContainerDetail(ContainerDetail container) {
+    public CustomContainerDetail(Container container) {
         id = container.getId();
 
-        name = container.getName();
+        name = container.getNames()[0];
 
         this.container = container ;
         incomingTraffic= -1;

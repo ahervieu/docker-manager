@@ -1,11 +1,9 @@
 package org.kevoree.docker.containerDriver.rest.dao;
 
+import com.github.dockerjava.api.model.Container;
 import org.kevoree.docker.containerDriver.core.ContainerDriverFactory;
 import org.kevoree.docker.containerDriver.core.client.DockerClientImpl;
-import org.kevoree.docker.containerDriver.core.client.DockerException;
-import org.kevoree.docker.containerDriver.core.model.Container;
 import org.kevoree.docker.containerDriver.core.model.CustomContainerDetail;
-import us.monoid.json.JSONException;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -16,7 +14,6 @@ import java.util.Map;
  * Created by aymeric on 12/12/14.
  */
 public enum CustomContainerDAO {
-    
     instance ;
 
     private DockerClientImpl dci;
@@ -38,10 +35,9 @@ public enum CustomContainerDAO {
     }
 
     private void updateContainerMap(){
-  
         List<String> container_to_rm = new ArrayList<String>();
         List<String> container_to_add = new ArrayList<String>();
-        try {
+
             List<Container> lstCon = dci.getContainers();
             // Check that all current container in the app are still active
             for (String id : contentProvider.keySet()) {
@@ -71,25 +67,15 @@ public enum CustomContainerDAO {
                 }
             }
 
-        } catch (DockerException e) {
-            e.printStackTrace();
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
 
-        try {
-        // Resolving
-        //Removing containers :
-            
-        container_to_rm.forEach(s -> contentProvider.remove(s));
 
-        for (String s : container_to_add) {
-            contentProvider.put(s, factory.createCustomContainerDetail(dci.getContainer(s)));
+
+            // Resolving
+            //Removing containers :
+            container_to_rm.forEach(s -> contentProvider.remove(s));
+
+            for (String s : container_to_add) {
+                contentProvider.put(s, factory.createCustomContainerDetail(dci.getContainer(s)));
+            }
         }
-            } catch (DockerException e) {
-                e.printStackTrace();
-            } catch (JSONException e) {
-                e.printStackTrace();
-        }
-    }
-}
+ }
