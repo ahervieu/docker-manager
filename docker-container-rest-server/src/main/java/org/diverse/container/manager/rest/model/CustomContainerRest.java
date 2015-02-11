@@ -1,6 +1,6 @@
-package org.containermanager.rest.rest.model;
+package org.diverse.container.manager.rest.model;
 
-import org.kevoree.docker.containerDriver.core.model.CustomContainerDetail;
+import org.diverse.container.manager.core.model.CustomContainerDetail;
 
 import javax.xml.bind.annotation.XmlRootElement;
 

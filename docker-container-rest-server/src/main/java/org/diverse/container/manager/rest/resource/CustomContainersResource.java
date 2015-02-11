@@ -1,11 +1,10 @@
-package org.containermanager.rest.rest.resource;
+package org.diverse.container.manager.rest.resource ;
 
 
 
-import org.kevoree.docker.containerDriver.core.model.CustomContainerDetail;
-import org.kevoree.docker.containerDriver.rest.dao.CustomContainerDAO;
-import org.kevoree.docker.containerDriver.rest.model.CustomContainerRest;
-
+import org.diverse.container.manager.core.model.CustomContainerDetail;
+import org.diverse.container.manager.rest.dao.CustomContainerDAO;
+import org.diverse.container.manager.rest.model.CustomContainerRest;
 import javax.ws.rs.*;
 import javax.ws.rs.core.*;
 import java.util.ArrayList;
@@ -15,7 +14,6 @@ import java.util.List;
 /**
  * Created by aymeric on 12/12/14.
  */
-
 @Path("/api")
 public class CustomContainersResource {
 

@@ -1,11 +1,13 @@
-package org.containermanager.rest.rest.dao;
+package org.diverse.container.manager.rest.dao ;
 
 import com.github.dockerjava.api.model.Container;
-import org.kevoree.docker.containerDriver.core.ContainerDriverFactory;
-import org.kevoree.docker.containerDriver.core.client.DockerClientImpl;
-import org.kevoree.docker.containerDriver.core.model.CustomContainerDetail;
+import org.diverse.container.manager.core.ContainerDriverFactory;
+import org.diverse.container.manager.core.client.DockerClientImpl;
+import org.diverse.container.manager.core.model.CustomContainerDetail;
+
 
 import java.util.ArrayList;
+
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
