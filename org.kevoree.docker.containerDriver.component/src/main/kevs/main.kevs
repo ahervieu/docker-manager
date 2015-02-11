@@ -1,8 +1,0 @@
-//sample of KevScript configuration
-repo "http://repo1.maven.org/maven2"
-include mvn:org.kevoree.library.java:org.kevoree.library.java.javaNode:release
-include mvn:org.kevoree.library.java:org.kevoree.library.java.ws:release
-add node0 : JavaNode
-add node0.hello : HelloWorld
-add sync : WSGroup
-attach node0 sync
