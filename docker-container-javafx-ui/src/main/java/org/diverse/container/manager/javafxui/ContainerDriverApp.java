@@ -1,4 +1,4 @@
-package org.kevoree.docker.containerDriver.javaFXUI;
+package org.diverse.container.manager.javafxui ;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;

@@ -4,8 +4,8 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>org.kevoree</groupId>
-    <artifactId>docker-container-javafxui</artifactId>
-    <name>docker-container-javafxui</name>
+    <artifactId>docker-container-javafx-ui</artifactId>
+    <name>docker-container-javafx-ui</name>
 
 
     <version>1.0-SNAPSHOT</version>

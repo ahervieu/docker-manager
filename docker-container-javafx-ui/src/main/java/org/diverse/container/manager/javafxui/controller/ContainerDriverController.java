@@ -1,20 +1,23 @@
-package org.kevoree.docker.containerDriver.javaFXUI.controller;
+package org.diverse.container.manager.javafxui.controller;
 
 
 import com.github.dockerjava.api.model.Container;
+
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
+
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.util.Callback;
-import org.kevoree.docker.containerDriver.core.ContainerDriverFactory;
-import org.kevoree.docker.containerDriver.core.StringParsingUtils;
-import org.kevoree.docker.containerDriver.core.cgroupDriver.NetworkDriver;
-import org.kevoree.docker.containerDriver.core.client.DockerClientImpl;
-import org.kevoree.docker.containerDriver.core.model.CustomContainerDetail;
+import org.diverse.container.manager.core.ContainerDriverFactory;
+import org.diverse.container.manager.core.StringParsingUtils;
+import org.diverse.container.manager.core.cgroupdriver.NetworkDriver;
+import org.diverse.container.manager.core.client.DockerClientImpl;
+import org.diverse.container.manager.core.model.CustomContainerDetail;
+
 
 import java.io.File;
 import java.net.URL;
@@ -72,7 +75,7 @@ public class ContainerDriverController implements Initializable {
 
             if (currContainer != null) {
 
-                if(StringParsingUtils.isInteger( io_write.getText())) {
+                if(StringParsingUtils.isInteger(io_write.getText())) {
 
                     currContainer.setIo_write_speed(Integer.valueOf(io_write.getText()));
                 }

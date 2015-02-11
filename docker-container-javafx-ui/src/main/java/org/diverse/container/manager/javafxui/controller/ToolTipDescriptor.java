@@ -1,4 +1,5 @@
-package org.kevoree.docker.containerDriver.javaFXUI.controller;
+package org.diverse.container.manager.javafxui.controller;
+
 
 /**
  * Created by aymeric on 01/12/14.
