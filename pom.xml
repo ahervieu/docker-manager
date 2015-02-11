@@ -32,9 +32,8 @@
     </build>
 
     <modules>
-        <module>org.kevoree.docker.containerDriver.component</module>
-        <module>org.kevoree.docker.containerDriver.core</module>
-        <module>org.kevoree.docker.containerDriver.javaFXUI</module>
-        <module>org.kevoree.docker.containerDriver.rest</module>
+        <module>docker-container-driver-core</module>
+        <module>docker-container-javafx-ui</module>
+        <module>docker-container-rest-server</module>
     </modules>
 </project>
