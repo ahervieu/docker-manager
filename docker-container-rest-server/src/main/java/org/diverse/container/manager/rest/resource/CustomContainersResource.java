@@ -7,6 +7,7 @@ import org.diverse.container.manager.rest.dao.CustomContainerDAO;
 import org.diverse.container.manager.rest.model.CustomContainerRest;
 import javax.ws.rs.*;
 import javax.ws.rs.core.*;
+import javax.xml.bind.JAXBElement;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;

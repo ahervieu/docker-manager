@@ -18,7 +18,18 @@ rm -rf /var/cache/oracle-jdk8-installer
 
 # Install Maven.
 RUN apt-get update
-RUN  apt-get install -y wget git maven
+RUN  apt-get install -y wget git maven unzip pwgen expect
+
+# Install glasfish : 
+
+RUN wget http://download.java.net/glassfish/4.1/release/glassfish-4.1.zip && \
+    unzip glassfish-4.1.zip -d /opt && \
+    rm glassfish-4.1.zip && \
+    apt-get clean && \
+    rm -rf /var/lib/apt/lists/*
+    
+ENV GALSSFISH_PATH /opt/glassfish4/
+
 # Define working directory.
 WORKDIR /data
 
@@ -30,6 +41,5 @@ WORKDIR docker-manager
 RUN mvn clean install
 WORKDIR org.kevoree.docker.containerDriver.rest
 RUN pwd
-RUN mvn clean compile assembly:single
-WORKDIR target
-CMD java -jar docker-container-rest-*.jar
+RUN mvn clean compile
+CMD mvn glassfish:redeploy
