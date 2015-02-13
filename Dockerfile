@@ -42,4 +42,4 @@ RUN mvn clean install
 WORKDIR docker-container-rest-server
 RUN mvn package
 RUN chmod +x deploy.sh
-ENTRYPOINT deploy
+ENTRYPOINT mvn glassfish:deploy
