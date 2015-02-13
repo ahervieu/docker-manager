@@ -18,7 +18,11 @@ RUN \
 
 # Install Maven.
 RUN apt-get update
-RUN apt-get install -y wget git maven unzip
+RUN apt-get install -y wget git maven unzip supervisor
+
+RUN mkdir -p /var/log/supervisor
+COPY supervisord.conf /etc/supervisor/conf.d/supervisord.conf
+
 
 # Install glasfish : 
 
@@ -42,4 +46,4 @@ RUN mvn clean install
 WORKDIR docker-container-rest-server
 RUN mvn package
 RUN chmod +x deploy.sh
-ENTRYPOINT mvn glassfish:deploy
+CMD mvn glassfish:deploy && /usr/bin/supervisord
