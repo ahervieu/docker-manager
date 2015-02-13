@@ -41,6 +41,5 @@ WORKDIR docker-manager
 RUN mvn clean install
 WORKDIR docker-container-rest-server
 RUN mvn package
-WORKDIR deploy
 RUN chmod +x deploy.sh
 CMD deploy.sh
