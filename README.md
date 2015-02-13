@@ -56,7 +56,17 @@ In the container :
 ```
  time $(dd if=/dev/zero of=testfile0 bs=1000 count=100000 && sync)
  ```
- 
- 
- 
+##Start container todo : fix img name 
+  ```
+ sudo docker run \
+   --volume=/:/rootfs:ro \
+   --volume=/var/run:/var/run:rw \
+   --volume=/sys:/sys:ro \
+   --volume=/var/lib/docker/:/var/lib/docker:ro \
+   --publish=8080:8080 \
+   --detach=true \
+   --name=dm \
+   --net=host
+ dockman
+  ```
 
