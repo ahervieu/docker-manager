@@ -45,5 +45,4 @@ WORKDIR docker-manager
 RUN mvn clean install
 WORKDIR docker-container-rest-server
 RUN mvn package
-RUN chmod +x deploy.sh
 CMD mvn glassfish:deploy && /usr/bin/supervisord
