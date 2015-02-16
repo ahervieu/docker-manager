@@ -72,7 +72,7 @@
                     <domain>
                         <name>${project.artifactId}</name>
                         <adminPort>4848</adminPort>
-                        <httpPort>8080</httpPort>
+                        <httpPort>8081</httpPort>
                         <httpsPort>8443</httpsPort>
                         <iiopPort>3700</iiopPort>
                         <jmsPort>7676</jmsPort>
