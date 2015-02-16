@@ -1,3 +1,5 @@
+Warning : doc is deprecated. Todo : update it
+
 docker-manager
 ==============
 A small video of presentation is available here :https://www.youtube.com/watch?v=uKcJt3-17GY&feature=youtu.be
