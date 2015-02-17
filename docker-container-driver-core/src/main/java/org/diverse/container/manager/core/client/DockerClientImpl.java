@@ -30,7 +30,6 @@ public class  DockerClientImpl {
     public Container getContainer(String s) {
         List<Container> lst = getContainers() ;
         Container c2 = lst.stream().filter(c -> c.getId().equals(s)).collect(Collectors.toList()).get(0) ;
-
         return c2 ;
     }
 }
