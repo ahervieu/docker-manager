@@ -24,8 +24,11 @@ Use refresh button to update container list !
 ##Playing with Rest API
 
 ```
-http://localhost:8081/api/
-http://localhost:8081/api/ID of the container
+GET Request
+http://localhost:8081/container_manager_rest_server/rest/api/containers
+http://localhost:8081/container_manager_rest_server/rest/api/ID of the container
+PUT request   @Consumes(MediaType.APPLICATION_JSON)
+http://localhost:8081/container_manager_rest_server/rest/api/ID of the container
 ```
 
 # How to test it :
