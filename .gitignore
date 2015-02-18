@@ -2,3 +2,5 @@ org.kevoree.docker.containerdriver.iml
 .idea
 *.class
 target
+
+Docker-Cgroup-Manager.iml
