@@ -4,3 +4,7 @@ org.kevoree.docker.containerdriver.iml
 target
 
 Docker-Cgroup-Manager.iml
+docker-container-rest-server/docker-container-rest-server.iml
+docker-container-javafx-ui/.idea
+docker-container-javafx-ui/docker-container-javafx-ui.iml
+docker-container-driver-core/docker-container-driver-core.iml
