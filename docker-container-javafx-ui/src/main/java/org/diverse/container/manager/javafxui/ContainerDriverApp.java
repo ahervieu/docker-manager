@@ -18,8 +18,8 @@ public class ContainerDriverApp extends Application {
     public void start(Stage stage) throws Exception {
 
         String fxmlFile = "/fxml/ContainerDriverApp.fxml";
-        FXMLLoader loader = new FXMLLoader();
-        Parent rootNode = (Parent) loader.load(getClass().getResourceAsStream(fxmlFile));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource(fxmlFile));
+        Parent rootNode = (Parent) loader.load();
         Scene scene = new Scene(rootNode);
         scene.getStylesheets().add("/styles/styles.css");
         stage.setTitle("Docker Container Resource Manager");
