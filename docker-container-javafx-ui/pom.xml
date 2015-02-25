@@ -36,7 +36,7 @@
                 <version>8.1.2</version>
                 <configuration>
 
-                    <mainClass>org.kevoree.docker.containerDriver.javaFXUI.ContainerDriverApp</mainClass>
+                    <mainClass>org.diverse.container.manager.javafxui.ContainerDriverApp</mainClass>
                     <!-- only required if signing the jar file -->
                 </configuration>
             </plugin>
